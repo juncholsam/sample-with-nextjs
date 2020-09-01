@@ -1,7 +1,28 @@
-import '../styles/globals.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
+// Swiper CSS
+import 'swiper/swiper-bundle.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import store from '../store';
 
-export default MyApp
+import '../styles/globals.css';
+
+const MyApp = ({ Component, pageProps }) => (
+  <Provider store={store}>
+    <div>
+      <Component {...pageProps} />
+    </div>
+  </Provider>
+);
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object,
+};
+
+MyApp.defaultProps = {
+  pageProps: null,
+};
+
+export default MyApp;
